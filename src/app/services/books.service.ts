@@ -59,4 +59,28 @@ export class BooksService {
     this.saveBooks();
     this.emitBooks();
   }
+
+  uploadFile(file:File){
+    return new Promise(
+      (resolve,reject)=>{
+        const almostUniqueFileName = Date.now().toString();
+        const upload = firebase.storage().ref()
+        .child('images/'+almostUniqueFileName+file.name)
+        .put(file);
+        upload.on(firebase.storage.TaskEvent.STATE_CHANGED,
+          ()=>{
+            console.log('chargement en cours...')
+          },
+          (error)=>{
+            console.log('Erreur de chargement' + error);
+            reject(error)
+          },
+          ()=>{
+            resolve(upload.snapshot.ref.getDownloadURL());
+          }
+          )
+      }
+    )
+  }
+
 }

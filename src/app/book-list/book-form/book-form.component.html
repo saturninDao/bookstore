@@ -10,7 +10,13 @@
                 <label for="author">Auteur</label>
                 <input type="text" id="author" class="form-control" formControlName="author">
             </div>
-            <button class="btn btn-success" [disabled]="bookForm.invalid">Enregistrer</button>
+            <div class="form-group">
+                <h4>Ajouter Photo</h4>
+                <input type="file" (change)="detectFiles($event)" class="form-control" accept="image/*">
+                <p class="text-succes" *ngIf="fileUploaded">Fichier chargé</p>
+            </div>
+            <button class="btn btn-success" 
+                    [disabled]="bookForm.invalid || fileIsUploading">Enregistrer</button>
         </form>
     </div>
 </div>
