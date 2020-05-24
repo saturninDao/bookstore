@@ -21,8 +21,10 @@ export class BookListComponent implements OnInit,OnDestroy {
         this.books = books;
       }
     );
+    this.bookService.getBooks();
     this.bookService.emitBooks();
   }
+
 
   onNewBook(){
     this.router.navigate(['/books','new']);
