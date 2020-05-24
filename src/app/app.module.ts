@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { MyConfig } from './config/config';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent},
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
   providers: [
     AuthService,
     BooksService,
-    AuthGuardService
+    AuthGuardService,
+    MyConfig
   ],
   bootstrap: [AppComponent]
 })
