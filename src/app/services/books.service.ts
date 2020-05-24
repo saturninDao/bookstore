@@ -29,7 +29,7 @@ export class BooksService {
   getSingle(id){
     return new Promise(
       (resolve,reject)=>{
-        firebase.database().ref('/books/'+1).once('value').then(
+        firebase.database().ref('/books/'+id).once('value').then(
           (data) => {
             resolve(data.val());
           },
@@ -48,6 +48,21 @@ export class BooksService {
   }
 
   removeBook(book: Book){
+    //let remove photo file
+    if(book.photo){
+      const storageRef = firebase.storage().refFromURL(book.photo);
+      storageRef.delete().then(
+        ()=>{
+          console.log("Photo supprimé");
+        }
+      ).catch(
+        (error)=>{
+          console.log("Photo non trouvé");
+        }
+      )
+    }
+
+
     const bookIndexToRemove = this.books.findIndex(
       (bookEl)=>{
         if(bookEl==book){
