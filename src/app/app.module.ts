@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
@@ -14,6 +13,7 @@ import { BooksService } from './services/books.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent},
@@ -41,7 +41,7 @@ const appRoutes: Routes = [
     HttpClientModule
   ],
   providers: [
-    AuthGuardService,
+    AuthService,
     BooksService,
     AuthGuardService
   ],
